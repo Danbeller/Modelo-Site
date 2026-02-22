@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sabor & Cia - Lanchonete Artesanal</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS SEPARADO -->
+    <link rel="stylesheet" href="style.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-yellow': '#F2C94C',
+                        'brand-red': '#EB5757',
+                        'brand-dark': '#1a1a1a',
+                        'brand-gray': '#f4f4f4'
+                    },
+                    fontFamily: {
+                        'display': ['"Bebas Neue"', 'sans-serif'],
+                        'body': ['"Poppins"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="font-body bg-brand-dark text-white overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <i class="fas fa-hamburger text-brand-yellow text-3xl"></i>
+                    <span class="font-display text-3xl tracking-wider text-white">SABOR <span class="text-brand-yellow">&</span> CIA</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="hover:text-brand-yellow transition-colors px-3 py-2 rounded-md text-sm font-medium">Início</a>
+                        <a href="#menu" class="hover:text-brand-yellow transition-colors px-3 py-2 rounded-md text-sm font-medium">Cardápio</a>
+                        <a href="#about" class="hover:text-brand-yellow transition-colors px-3 py-2 rounded-md text-sm font-medium">Sobre</a>
+                        <a href="#location" class="hover:text-brand-yellow transition-colors px-3 py-2 rounded-md text-sm font-medium">Localização</a>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button onclick="toggleCart()" class="relative p-2 text-white hover:text-brand-yellow transition-colors">
+                        <i class="fas fa-shopping-bag text-2xl"></i>
+                        <span id="cart-count" class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/4 -translate-y-1/4 bg-brand-red rounded-full opacity-0 transition-opacity duration-300">0</span>
+                    </button>
+                    <button class="md:hidden p-2 text-white" onclick="toggleMobileMenu()">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-dark border-t border-gray-800">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-800">Início</a>
+                <a href="#menu" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-800">Cardápio</a>
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-800">Sobre</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Burger Background" class="w-full h-full object-cover opacity-60">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/60 to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+            <span class="text-brand-yellow font-display text-2xl md:text-4xl tracking-widest mb-4 block animate-float">O MELHOR DA CIDADE</span>
+            <h1 class="font-display text-6xl md:text-8xl lg:text-9xl text-white mb-6 leading-none drop-shadow-lg">
+                HAMBÚRGUER <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-yellow to-orange-500">ARTESANAL</span>
+            </h1>
+            <p class="text-gray-300 text-lg md:text-xl mb-10 max-w-2xl mx-auto font-light">
+                Ingredientes frescos, carnes selecionadas e uma experiência de sabor inesquecível. 
+                Venha descobrir o verdadeiro significado de lanche gourmet.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#menu" class="bg-brand-yellow text-brand-dark px-8 py-4 rounded-full font-bold text-lg hover:bg-white transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(242,201,76,0.4)]">
+                    <i class="fas fa-utensils mr-2"></i> VER CARDÁPIO
+                </a>
+                <button onclick="scrollToContact()" class="border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-brand-dark transition-all">
+                    <i class="fas fa-phone mr-2"></i> FAZER PEDIDO
+                </button>
+            </div>
+        </div>
+
+        <!-- Scroll Down Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#menu" class="text-white opacity-70 hover:opacity-100">
+                <i class="fas fa-chevron-down text-3xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Features Banner -->
+    <div class="bg-brand-yellow py-8 relative z-20 -mt-2">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center text-brand-dark">
+            <div class="flex flex-col items-center">
+                <i class="fas fa-leaf text-4xl mb-2"></i>
+                <h3 class="font-bold text-xl">Ingredientes Frescos</h3>
+                <p class="text-sm opacity-80">Produtos selecionados diariamente</p>
+            </div>
+            <div class="flex flex-col items-center border-l-0 md:border-l border-brand-dark/20 border-r-0 md:border-r">
+                <i class="fas fa-fire text-4xl mb-2"></i>
+                <h3 class="font-bold text-xl">Preparo na Hora</h3>
+                <p class="text-sm opacity-80">Seu lanche feito na hora do pedido</p>
+            </div>
+            <div class="flex flex-col items-center">
+                <i class="fas fa-motorcycle text-4xl mb-2"></i>
+                <h3 class="font-bold text-xl">Entrega Rápida</h3>
+                <p class="text-sm opacity-80">Receba em casa com rapidez</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-20 bg-brand-dark relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-5xl md:text-6xl text-white mb-4">NOSSO <span class="text-brand-yellow">CARDÁPIO</span></h2>
+                <div class="w-24 h-1 bg-brand-yellow mx-auto rounded-full"></div>
+                <p class="mt-4 text-gray-400">Escolha seus favoritos e monte seu pedido</p>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12" id="menu-filters">
+                <button onclick="filterMenu('all')" class="filter-btn active px-6 py-2 rounded-full border border-brand-yellow bg-brand-yellow text-brand-dark font-bold transition-all">Todos</button>
+                <button onclick="filterMenu('burger')" class="filter-btn px-6 py-2 rounded-full border border-gray-600 text-gray-300 hover:border-brand-yellow hover:text-brand-yellow transition-all">Hambúrgueres</button>
+                <button onclick="filterMenu('side')" class="filter-btn px-6 py-2 rounded-full border border-gray-600 text-gray-300 hover:border-brand-yellow hover:text-brand-yellow transition-all">Acompanhamentos</button>
+                <button onclick="filterMenu('drink')" class="filter-btn px-6 py-2 rounded-full border border-gray-600 text-gray-300 hover:border-brand-yellow hover:text-brand-yellow transition-all">Bebidas</button>
+            </div>
+
+            <!-- Menu Grid -->
+            <div id="menu-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Items will be injected here via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-[#222]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2 relative">
+                    <div class="absolute -top-4 -left-4 w-24 h-24 bg-brand-yellow rounded-full opacity-20"></div>
+                    <div class="absolute -bottom-4 -right-4 w-32 h-32 bg-brand-red rounded-full opacity-20"></div>
+                    <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Nossa Cozinha" class="rounded-2xl shadow-2xl relative z-10 w-full object-cover h-[500px]">
+                </div>
+                <div class="lg:w-1/2">
+                    <h2 class="font-display text-5xl text-white mb-6">MAIS QUE UMA <span class="text-brand-yellow">LANCHONETE</span></h2>
+                    <p class="text-gray-300 mb-6 text-lg leading-relaxed">
+                        Fundada em 2015, a Sabor & Cia nasceu da paixão por comida de verdade. Acreditamos que um bom hambúrguer pode mudar o dia de qualquer um. 
+                    </p>
+                    <p class="text-gray-300 mb-8 text-lg leading-relaxed">
+                        Utilizamos carnes 100% Angus, pães de fermentação natural e molhos exclusivos preparados artesanalmente. Nossa missão é oferecer uma experiência gastronômica única em um ambiente descontraído e acolhedor.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="text-center p-4 bg-brand-dark rounded-lg border border-gray-800">
+                            <span class="block text-3xl font-bold text-brand-yellow">8+</span>
+                            <span class="text-sm text-gray-400">Anos de História</span>
+                        </div>
+                        <div class="text-center p-4 bg-brand-dark rounded-lg border border-gray-800">
+                            <span class="block text-3xl font-bold text-brand-yellow">50k+</span>
+                            <span class="text-sm text-gray-400">Clientes Felizes</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location & Contact -->
+    <section id="location" class="py-20 bg-brand-dark border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="font-display text-4xl text-white mb-8">ONDE ESTAMOS</h2>
+                    <div class="bg-gray-800 rounded-xl overflow-hidden h-80 w-full relative group">
+                        <!-- Simulated Map -->
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3718.879569!2d-50.4269773!3d-21.2051612!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x949641f0b6f6e3f%3A0x0000000000000000!2sRua%20Floriano%20Peixoto%2C%201307%20-%20Jardim%20Paulista%2C%20Ara%C3%A7atuba%20-%20SP%2C%2016011-010!5e0!3m2!1spt-BR!2sbr!4v1708530000000!5m2!1spt-BR!2sbr" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0; filter: invert(90%) hue-rotate(180deg);" 
+                            allowfullscreen="" 
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                    <div class="mt-6 space-y-4">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-brand-yellow p-3 rounded-full text-brand-dark"><i class="fas fa-map-marker-alt"></i></div>
+                            <div>
+                                <h4 class="font-bold text-white">Endereço</h4>
+                                <p class="text-gray-400">Rua: Floriano Peixoto, 1307- Jardim Paulista, Araçatuba - SP</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="bg-brand-yellow p-3 rounded-full text-brand-dark"><i class="fas fa-clock"></i></div>
+                            <div>
+                                <h4 class="font-bold text-white">Horário de Funcionamento</h4>
+                                <p class="text-gray-400">Seg a Sex: 11h - 23h | Sáb e Dom: 11h - 00h</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-[#222] p-8 rounded-2xl border border-gray-800">
+                    <h2 class="font-display text-4xl text-white mb-2">FALE CONOSCO</h2>
+                    <p class="text-gray-400 mb-6">Dúvidas, sugestões ou reservas? Mande uma mensagem!</p>
+                    
+                    <form onsubmit="handleContactSubmit(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-1">Nome</label>
+                            <input type="text" required class="w-full bg-brand-dark border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-yellow transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-1">Email</label>
+                            <input type="email" required class="w-full bg-brand-dark border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-yellow transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-1">Mensagem</label>
+                            <textarea rows="4" required class="w-full bg-brand-dark border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-yellow transition-colors"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-brand-yellow text-brand-dark font-bold py-3 rounded-lg hover:bg-white transition-colors">
+                            ENVIAR MENSAGEM
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-12 border-t border-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <span class="font-display text-3xl text-white">SABOR <span class="text-brand-yellow">&</span> CIA</span>
+                    <p class="text-gray-500 text-sm mt-2">© 2023 Info Tech Araçatuba. Todos os direitos reservados.</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-brand-yellow text-2xl"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-brand-yellow text-2xl"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-brand-yellow text-2xl"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Drawer -->
+    <div id="cart-drawer" class="fixed inset-0 z-[60] pointer-events-none">
+        <!-- Backdrop -->
+        <div id="cart-backdrop" class="absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300" onclick="toggleCart()"></div>
+        
+        <!-- Drawer Panel -->
+        <div id="cart-panel" class="absolute right-0 top-0 h-full w-full md:w-[450px] bg-[#1a1a1a] shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col pointer-events-auto border-l border-gray-800">
+            <div class="p-6 border-b border-gray-800 flex justify-between items-center bg-[#222]">
+                <h2 class="font-display text-3xl text-white">SEU PEDIDO</h2>
+                <button onclick="toggleCart()" class="text-gray-400 hover:text-white transition-colors">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            
+            <!-- Cart Items Area -->
+            <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-6">
+                <!-- Empty State -->
+                <div id="empty-cart-msg" class="flex flex-col items-center justify-center h-full text-gray-500">
+                    <i class="fas fa-shopping-basket text-6xl mb-4 opacity-30"></i>
+                    <p>Seu carrinho está vazio</p>
+                    <button onclick="toggleCart()" class="mt-4 text-brand-yellow hover:underline">Ver Cardápio</button>
+                </div>
+            </div>
+
+            <!-- Footer / Checkout -->
+            <div class="p-6 bg-[#222] border-t border-gray-800">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-gray-400">Subtotal</span>
+                    <span id="cart-subtotal" class="text-xl font-bold text-white">R$ 0,00</span>
+                </div>
+                <div class="flex justify-between items-center mb-6">
+                    <span class="text-gray-400">Taxa de Entrega</span>
+                    <span class="text-sm text-green-400">Grátis</span>
+                </div>
+                <div class="flex justify-between items-center mb-6 pt-4 border-t border-gray-700">
+                    <span class="text-xl font-bold text-white">Total</span>
+                    <span id="cart-total" class="text-3xl font-bold text-brand-yellow">R$ 0,00</span>
+                </div>
+                <button onclick="checkout()" id="checkout-btn" disabled class="w-full bg-brand-yellow text-brand-dark font-bold py-4 rounded-lg hover:bg-white transition-all disabled:opacity-50 disabled:cursor-not-allowed flex justify-center items-center gap-2">
+                    <span>FINALIZAR PEDIDO</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="fixed bottom-5 right-5 z-[70] flex flex-col gap-2"></div>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // --- Data ---
+        const menuItems = [
+            {
+                id: 1,
+                name: "Classic Smash",
+                description: "Pão brioche, blend 180g de costela, queijo cheddar, cebola caramelizada e molho especial da casa.",
+                price: 32.00,
+                category: "burger",
+                image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 2,
+                name: "Double Bacon",
+                description: "Dois smash burgers 120g, bacon crocante em dobro, queijo prato e maionese de alho negro.",
+                price: 42.00,
+                category: "burger",
+                image: "https://images.unsplash.com/photo-1553979459-d2229ba7433b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 3,
+                name: "Chicken Crispy",
+                description: "Peito de frango empanado na farinha panko, salada, tomate e molho ranch.",
+                price: 28.00,
+                category: "burger",
+                image: "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 4,
+                name: "Veggie Power",
+                description: "Hambúrguer de grão de bico e especiarias, abacate, rúcula e molho de iogurte.",
+                price: 30.00,
+                category: "burger",
+                image: "https://images.unsplash.com/photo-1520072959219-c595dc870360?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 5,
+                name: "Batata Rústica",
+                description: "Batatas com casca, temperadas com alecrim e sal grosso. Acompanha molho barbecue.",
+                price: 18.00,
+                category: "side",
+                image: "https://images.unsplash.com/photo-1573080496987-a199f8cd6e8d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 6,
+                name: "Onion Rings",
+                description: "Anéis de cebola empanados e fritos até ficarem dourados e crocantes.",
+                price: 16.00,
+                category: "side",
+                image: "https://images.unsplash.com/photo-1639024471283-03518883512d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 7,
+                name: "Refrigerante",
+                description: "Coca-Cola, Guaraná ou Sprite (350ml).",
+                price: 8.00,
+                category: "drink",
+                image: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 8,
+                name: "Milkshake",
+                description: "Milkshake cremoso de chocolate, morango ou baunilha.",
+                price: 22.00,
+                category: "drink",
+                image: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+            }
+        ];
+
+        // --- State ---
+        let cart = [];
+
+        // --- Initialization ---
+        document.addEventListener('DOMContentLoaded', () => {
+            renderMenu('all');
+            updateCartUI();
+            
+            // Navbar Scroll Effect
+            window.addEventListener('scroll', () => {
+                const nav = document.getElementById('navbar');
+                if (window.scrollY > 50) {
+                    nav.classList.add('bg-brand-dark/95', 'backdrop-blur-md', 'shadow-lg');
+                } else {
+                    nav.classList.remove('bg-brand-dark/95', 'backdrop-blur-md', 'shadow-lg');
+                }
+            });
+        });
+
+        // --- Core Functions ---
+
+        function renderMenu(category) {
+            const grid = document.getElementById('menu-grid');
+            grid.innerHTML = '';
+
+            const filteredItems = category === 'all' 
+                ? menuItems 
+                : menuItems.filter(item => item.category === category);
+
+            filteredItems.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'menu-card bg-[#222] rounded-2xl overflow-hidden border border-gray-800 hover:border-brand-yellow transition-all duration-300 group flex flex-col';
+                card.innerHTML = `
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute top-3 right-3 bg-brand-dark/80 backdrop-blur-sm px-3 py-1 rounded-full border border-gray-700">
+                            <span class="text-brand-yellow font-bold">R$ ${item.price.toFixed(2).replace('.', ',')}</span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <h3 class="font-display text-2xl text-white mb-2">${item.name}</h3>
+                        <p class="text-gray-400 text-sm mb-6 flex-1">${item.description}</p>
+                        <button onclick="addToCart(${item.id})" class="add-btn w-full bg-gray-800 text-white py-3 rounded-xl font-bold flex items-center justify-center gap-2 transition-all duration-300 border border-gray-700 group-hover:border-brand-yellow">
+                            <i class="fas fa-plus"></i> ADICIONAR
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            // Update active filter button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-brand-yellow', 'text-brand-dark', 'border-brand-yellow');
+                btn.classList.add('text-gray-300', 'border-gray-600');
+                if (btn.getAttribute('onclick').includes(`'${category}'`)) {
+                    btn.classList.remove('text-gray-300', 'border-gray-600');
+                    btn.classList.add('bg-brand-yellow', 'text-brand-dark', 'border-brand-yellow');
+                }
+            });
+        }
+
+        function filterMenu(category) {
+            renderMenu(category);
+        }
+
+        function addToCart(id) {
+            const item = menuItems.find(i => i.id === id);
+            const existingItem = cart.find(i => i.id === id);
+
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({ ...item, quantity: 1 });
+            }
+
+            updateCartUI();
+            showToast(`<b>${item.name}</b> adicionado ao carrinho!`, 'success');
+            
+            // Animate cart icon
+            const cartBtn = document.querySelector('.fa-shopping-bag');
+            cartBtn.parentElement.classList.add('scale-125', 'text-brand-yellow');
+            setTimeout(() => cartBtn.parentElement.classList.remove('scale-125', 'text-brand-yellow'), 200);
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCartUI();
+        }
+
+        function updateQuantity(id, change) {
+            const item = cart.find(i => i.id === id);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeFromCart(id);
+                } else {
+                    updateCartUI();
+                }
+            }
+        }
+
+        function updateCartUI() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartCount = document.getElementById('cart-count');
+            const subtotalEl = document.getElementById('cart-subtotal');
+            const totalEl = document.getElementById('cart-total');
+            const checkoutBtn = document.getElementById('checkout-btn');
+            const emptyMsg = document.getElementById('empty-cart-msg');
+
+            // Update Badge
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.innerText = totalItems;
+            cartCount.style.opacity = totalItems > 0 ? '1' : '0';
+
+            // Calculate Totals
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+            // Render Items
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '';
+                cartItemsContainer.appendChild(emptyMsg);
+                emptyMsg.style.display = 'flex';
+                checkoutBtn.disabled = true;
+            } else {
+                emptyMsg.style.display = 'none';
+                cartItemsContainer.innerHTML = '';
+                
+                cart.forEach(item => {
+                    const itemEl = document.createElement('div');
+                    itemEl.className = 'flex gap-4 bg-brand-dark p-3 rounded-xl border border-gray-800 animate-fade-in';
+                    itemEl.innerHTML = `
+                        <img src="${item.image}" class="w-20 h-20 object-cover rounded-lg">
+                        <div class="flex-1 flex flex-col justify-between">
+                            <div class="flex justify-between items-start">
+                                <h4 class="font-bold text-white text-sm">${item.name}</h4>
+                                <button onclick="removeFromCart(${item.id})" class="text-gray-500 hover:text-brand-red"><i class="fas fa-trash-alt"></i></button>
+                            </div>
+                            <div class="flex justify-between items-end">
+                                <div class="flex items-center gap-3 bg-[#222] rounded-lg px-2 py-1">
+                                    <button onclick="updateQuantity(${item.id}, -1)" class="text-gray-400 hover:text-white w-4">-</button>
+                                    <span class="text-white text-sm font-bold">${item.quantity}</span>
+                                    <button onclick="updateQuantity(${item.id}, 1)" class="text-gray-400 hover:text-white w-4">+</button>
+                                </div>
+                                <span class="text-brand-yellow font-bold">R$ ${(item.price * item.quantity).toFixed(2).replace('.', ',')}</span>
+                            </div>
+                        </div>
+                    `;
+                    cartItemsContainer.appendChild(itemEl);
+                });
+                checkoutBtn.disabled = false;
+            }
+
+            // Update Prices
+            subtotalEl.innerText = `R$ ${total.toFixed(2).replace('.', ',')}`;
+            totalEl.innerText = `R$ ${total.toFixed(2).replace('.', ',')}`;
+        }
+
+        function toggleCart() {
+            const drawer = document.getElementById('cart-drawer');
+            const backdrop = document.getElementById('cart-backdrop');
+            const panel = document.getElementById('cart-panel');
+            
+            const isOpen = !panel.classList.contains('translate-x-full');
+
+            if (isOpen) {
+                // Close
+                panel.classList.add('translate-x-full');
+                backdrop.classList.remove('opacity-100');
+                backdrop.classList.add('opacity-0');
+                setTimeout(() => {
+                    drawer.classList.add('pointer-events-none');
+                }, 300);
+            } else {
+                // Open
+                drawer.classList.remove('pointer-events-none');
+                backdrop.classList.remove('opacity-0');
+                backdrop.classList.add('opacity-100');
+                panel.classList.remove('translate-x-full');
+            }
+        }
+
+        function checkout() {
+            if (cart.length === 0) return;
+            
+            const btn = document.getElementById('checkout-btn');
+            const originalContent = btn.innerHTML;
+            
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> PROCESSANDO...';
+
+            setTimeout(() => {
+                toggleCart();
+                showToast('Pedido realizado com sucesso! Redirecionando...', 'success');
+                cart = [];
+                updateCartUI();
+                btn.innerHTML = originalContent;
+                btn.disabled = false;
+            }, 1500);
+        }
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerText;
+            
+            btn.innerText = 'ENVIANDO...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                showToast('Mensagem enviada! Entraremos em contato em breve.', 'success');
+                e.target.reset();
+                btn.innerText = originalText;
+                btn.disabled = false;
+            }, 1500);
+        }
+
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            
+            const bgClass = type === 'success' ? 'bg-green-600' : 'bg-red-600';
+            
+            toast.className = `${bgClass} text-white px-6 py-4 rounded-lg shadow-2xl flex items-center gap-3 toast-enter min-w-[300px]`;
+            toast.innerHTML = `
+                <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'} text-xl"></i>
+                <div class="text-sm">${message}</div>
+            `;
+
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateX(100%)';
+                toast.style.transition = 'all 0.5s';
+                setTimeout(() => toast.remove(), 500);
+            }, 3000);
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function scrollToContact() {
+            document.getElementById('location').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>]
+     
+
+
+     <div id="toast-container" class="fixed bottom-5 right-5 z-[70] flex flex-col gap-2"></div>
+
+ 
+    
+</body>
+</html>
